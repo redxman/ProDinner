@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    p {
+        margin: 0;
+    }
+</style>
+
+<h2>Feedback</h2>
+<br/>
+<button class="awe-btn" onclick="@(Url.Awe().PopupFormAction()
+                                        .Url(Url.Action("Create"))
+                                        .Success("reload")
+                                        .Height(500)
+                                        .Width(900))">@Mui.Create</button>
+
+@Html.Awe().AjaxList("Feedback").CssClass("flist")
+
+@*<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.0.1/ckeditor.js"></script>*@
+<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+<script>
+    function reload() {
+        $('#Feedback').data('api').load({ });
+    }
+</script>

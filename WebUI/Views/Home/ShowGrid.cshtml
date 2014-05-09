@@ -1,0 +1,18 @@
+﻿@{
+    var editFormat = string.Format(
+        "<button type='button' class='awe-btn' onclick=\"{0}\"><span class='ico-edit'></span></button>",
+        Url.Awe().PopupFormAction().Url(Url.Action("Edit", new { Id = ".Id" })).Success("edit").Fullscreen(true));
+}
+@(Html.Awe().Grid("DinnersGrid")
+      .Url(Url.Action("GetItems", "DinnerGrid"))
+      .Columns(
+          new Column { Name = "Name" },
+          new Column { Name = "Country.Name", ClientFormat = ".CountryName", Header = "Country" },
+          new Column { Name = "Address" },
+          new Column { Name = "Meals.Count", ClientFormat = ".MealsCount", Header = "Meals count"},
+          new Column { Name = "Chef.FirstName,Chef.LastName", ClientFormat = ".ChefName", Header = "Chef" },
+          new Column { ClientFormat = editFormat, Width = 50 },
+          new Column { ClientFormatFunc = "dinnersDelFormat", Width = 50 })
+      .Parent("DinnerName", "search")
+      .Parent("searchChefId", "chef")
+      .Parent("searchMeals", "meals"))

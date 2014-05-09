@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Countries";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@Mui.Country</h2>
+
+<br/>
+<button type="button" class="awe-btn" onclick="@(Url.Awe().PopupFormAction().Url(Url.Action("create")).Success("createCountry").Height(200))">@Mui.Create</button>
+@Html.Awe().TextBox("search").Placeholder(@Mui.Search).CssClass("searchtxt").HtmlAttributes(new{style="float:right;"})
+
+@Html.Awe().AjaxList("Countries").Parent("search","search")
+
+@Html.Awe().Form().FormClass("CountryRestore").Success("edit").Url(Url.Action("Restore"))
+@Html.Awe().Form().Confirm(true).FormClass("CountryConfirm").Success("del").Url(Url.Action("Delete"))
+<br />

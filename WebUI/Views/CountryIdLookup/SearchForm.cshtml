@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+<div class="elabel2" >Search:</div><div class="einput"><input type="text" name="search" class="awe-searchtxt"/></div>
+<button type="submit" class="awe-btn">Search</button>
+<div style="display:inline;"> 
+    <button type="button" class="awe-btn" onclick="@(Url.Awe()
+                                                         .PopupFormAction()
+                                                         .Name("createCountry")
+                                                         .Url(Url.Action("Create","Country"))
+                                                         .Success("lookupCreateCountry")
+                                                         .Height(200)
+                                                         .Modal(true))">Create</button>
+</div>
+
+@*this is for the country lookup in the create dinner popup*@
+@Html.Awe().Form().FormClass("CountryRestore").Success("edit").Url(Url.Action("Restore","Country"))
+@Html.Awe().Form().Confirm(true).FormClass("CountryConfirm").Success("del").Url(Url.Action("Delete","Country"))
+
+<br style="clear:both;"/>

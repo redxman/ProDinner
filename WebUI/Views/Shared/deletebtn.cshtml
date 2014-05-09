@@ -1,0 +1,17 @@
+﻿@model DelBtn
+@if (Model.IsDeleted)
+{
+    <form class="@(Model.Controller+"Restore") awe-il" method="post">
+        @Html.HiddenFor(o => o.Id)
+        <button type="submit" class="awe-btn" >re</button>
+    </form>
+}
+else
+{
+    <form class="@(Model.Controller+"Confirm") awe-il" method="post">
+        @Html.HiddenFor(o => o.Id)
+        <button type="submit" class="awe-btn">
+            <span class="ico-del"></span>
+        </button>
+    </form>
+}

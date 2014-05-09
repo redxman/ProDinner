@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Countries";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Users</h2>
+<fieldset><legend>@Mui.Search</legend>
+<input type="text" id="search"/>
+</fieldset>
+<br/>
+<button class="awe-btn" onclick="@(Url.Awe().PopupFormAction().Url(Url.Action("create")).Success("createUser").Height(350))">@Mui.Create</button>
+
+@Html.Awe().Form().FormClass("UserRestore").Success("edit").Url(Url.Action("Restore"))
+@Html.Awe().Form().Confirm(true).FormClass("UserConfirm").Success("del").Url(Url.Action("Delete"))
+
+@Html.Awe().AjaxList("Users").TableLayout(true).Parent("search","search").HtmlAttributes(new { data_mw = 300 })

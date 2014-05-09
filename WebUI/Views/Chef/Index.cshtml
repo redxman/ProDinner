@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Chefs";
+}
+<h2>@Mui.Chef</h2>
+@Html.Awe().TextBox("Search").Placeholder(Mui.Search).CssClass("searchtxt").HtmlAttributes(new{style="float:right;"})
+<button type="button" class="awe-btn" onclick="@(Url.Awe().PopupFormAction().Url(Url.Action("create")).Success("refreshChefGrid").Height(300))">@Mui.Create</button>
+<br class="cbt"/>
+@Html.Awe().Form().FormClass("ChefRestore").Success("refreshChefGrid").Url(Url.Action("Restore"))
+@Html.Awe().Form().Confirm(true).FormClass("ChefConfirm").Success("refreshChefGrid").Url(Url.Action("Delete"))
+@(Html.Awe().Grid("ChefGrid")
+      .Url(Url.Action("GetItems", "ChefGrid"))
+      .Parent("Search")
+      .Persistence(Persistence.Session)
+      .Columns(
+          new Column { Name = "FirstName", PercentWidth = 30},
+          new Column { Name = "LastName" },
+          new Column { Name = "Country.Name", ClientFormat = ".Country", Header = "Country" },
+          new Column { ClientFormat = ".Actions", Width = 80 }))

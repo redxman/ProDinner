@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Chef>
+@foreach (var o in Model)
+{
+    <tr data-val="@o.Id" class="awe-li" id="chef@(o.Id)">
+        <td>@o.FirstName @o.LastName
+        </td>
+        <td>@(o.Country != null ? o.Country.Name : "")
+        </td>
+        <td>
+            <button class="awe-btn" onclick="@(Url.Awe().PopupFormAction().Url(Url.Action("Edit", "Chef", new { o.Id })).Success("edit").Height(300))">
+                <span class="ico-edit"></span>
+            </button>
+        </td>
+        <td>
+@Html.Partial("deletebtn", new DelBtn{ Id = o.Id, IsDeleted = o.IsDeleted, Controller = "Chef" })
+        </td>
+    </tr>               
+}
